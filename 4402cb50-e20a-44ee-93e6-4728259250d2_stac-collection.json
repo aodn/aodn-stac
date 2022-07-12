@@ -1,0 +1,91 @@
+{
+  "type": "Collection",
+  "id": "4402cb50-e20a-44ee-93e6-4728259250d2",
+  "stac_version": "1.0.0",
+  "description": "Argo Australia aims to undertake real time monitoring of the broad ocean state around Australia by maintaining an array of profiling (Argo) floats that measure temperature, salinity and pressure down to 2000m every 10 days in real time. The data presented here, represent all Australian Argo profiles collected since 2000, and covers the oceans in the southern hemisphere worldwide. A typical Argo float mission is to profile from 2000 m depth to the sea surface every 10 days. On deployment, the float sinks to a depth of 1000 m and drifts with the ocean currents for 9 days. Then the float sinks deeper to its profile depth (usually 2000 m) before starting to ascend through the water column measuring temperature, salinity and pressure as it rises. Once at the surface it transmits location and profile data via satellite to land-based Argo data centres. After transmission the float sinks again and repeats the cycle. Each Argo float is identified by a unique identification number called a WMO ID. WMO (World Meteorological Organisation) ID Numbers are assigned to measurement stations and observing platforms to enable researchers to keep track of, and uniquely identify their floats. The average life of the latest model APEX Argo floats are around 3.7 years or approximately 135 cycles. These statistics are for floats with the standard alkaline battery configuration from an analysis by Kobayashi et al (2009). In the Australian Argo program, the floats are deployed with a combination of lithium and alkaline battery packs which extends float lifetime. Argo Australia floats usually last 5 years and several floats are approaching their 9th birthday and are still returning good data.\n\nThis data collection only provides access to the core data collected by Argo floats, i.e. temperature, salinity and pressure. To access biogeochemical (BGC) data recorded by selected floats, please access via this data collection - IMOS - Argo Profiles - biogeochemical data, https://catalogue-imos.aodn.org.au/geonetwork/srv/eng/catalog.search#/metadata/2223b7f2-4bac-4ff1-9b1e-aae9ac58deef.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "https://catalogue-imos.aodn.org.au/stac/4402cb50-e20a-44ee-93e6-4728259250d2/",
+      "type": "application/json"
+    },
+    {
+      "rel": "alternate",
+      "href": "http://www.argodatamgt.org/Documentation",
+      "title": "Link to Argo User's Manual"
+    },
+    {
+      "rel": "alternate",
+      "href": "http://imos.org.au/argo.html",
+      "title": "Argo page on IMOS website"
+    },
+    {
+      "rel": "alternate",
+      "href": "http://thredds.aodn.org.au/thredds/catalog/IMOS/Argo/dac/catalog.html",
+      "title": "NetCDF files via THREDDS catalog"
+    },
+    {
+      "rel": "alternate",
+      "href": "https://portal.aodn.org.au/search?uuid=4402cb50-e20a-44ee-93e6-4728259250d2",
+      "title": "View and download data though the AODN Portal"
+    },
+    {
+      "rel": "alternate",
+      "href": "http://geoserver-123.aodn.org.au/geoserver/wms",
+      "title": "imos:argo_profile_map"
+    },
+    {
+      "rel": "alternate",
+      "href": "http://geoserver-123.aodn.org.au/geoserver/ows",
+      "title": "imos:argo_primary_profile_core_low_res_good_qc_data"
+    },
+    {
+      "rel": "alternate",
+      "href": "https://help.aodn.org.au/web-services/ogc-wfs/",
+      "title": "OGC WFS help documentation"
+    },
+    {
+      "rel": "alternate",
+      "href": "http://geoserver-123.aodn.org.au/geoserver/ows",
+      "title": "argo_profile_map#url"
+    },
+    {
+      "rel": "alternate",
+      "href": "https://help.aodn.org.au/web-services/ncurllist-service/",
+      "title": "ncUrlList help documentation"
+    },
+    {
+      "rel": "describedby",
+      "href": "https://catalogue-imos.aodn.org.au/geonetwork/srv/eng/catalog.search#/metadata/4402cb50-e20a-44ee-93e6-4728259250d2",
+      "title": "Human readable dataset overview and reference"
+    },
+    {
+      "rel": "self",
+      "href": "https://catalogue-imos.aodn.org.au/stac/4402cb50-e20a-44ee-93e6-4728259250d2/",
+      "type": "application/json"
+    }
+  ],
+  "stac_extensions": [],
+  "title": "IMOS - Argo Profiles - core data",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180,
+          -90,
+          180,
+          90
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "1999-10-01T00:00:00Z",
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0"
+}

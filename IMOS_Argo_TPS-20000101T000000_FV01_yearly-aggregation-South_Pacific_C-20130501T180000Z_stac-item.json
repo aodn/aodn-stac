@@ -1,0 +1,67 @@
+{
+  "type": "Feature",
+  "stac_version": "1.0.0",
+  "id": "IMOS_Argo_TPS-20000101T000000_FV01_yearly-aggregation-South_Pacific_C-20130501T180000Z",
+  "properties": {
+    "start_datetime": "2000-07-13T20:07:30Z",
+    "end_datetime": "2001-01-01T08:02:48Z",
+    "description": "Argo aggregation file - normal vertical sampling density (Argos) profiles",
+    "datetime": null
+  },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          230.24400329589844,
+          -20.00200080871582
+        ],
+        [
+          230.24400329589844,
+          -6.59499979019165
+        ],
+        [
+          265.1940002441406,
+          -6.59499979019165
+        ],
+        [
+          265.1940002441406,
+          -20.00200080871582
+        ],
+        [
+          230.24400329589844,
+          -20.00200080871582
+        ]
+      ]
+    ]
+  },
+  "links": [
+    {
+      "rel": "collection",
+      "href": "/Users/alex/git/aodn/aodn-stac/4402cb50-e20a-44ee-93e6-4728259250d2_stac-collection.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "self",
+      "href": "s3://imos-data/IMOS/Argo/aggregated_datasets/south_pacific/IMOS_Argo_TPS-20000101T000000_FV01_yearly-aggregation-South_Pacific_C-20130501T180000Z_stac-item.json",
+      "type": "application/json"
+    }
+  ],
+  "assets": {
+    "s3://imos-data/IMOS/Argo/aggregated_datasets/south_pacific/IMOS_Argo_TPS-20000101T000000_FV01_yearly-aggregation-South_Pacific_C-20130501T180000Z.nc": {
+      "href": "s3://imos-data/IMOS/Argo/aggregated_datasets/south_pacific/IMOS_Argo_TPS-20000101T000000_FV01_yearly-aggregation-South_Pacific_C-20130501T180000Z.nc",
+      "type": "application/x-netcdf",
+      "roles": [
+        "data"
+      ]
+    }
+  },
+  "bbox": [
+    230.24400329589844,
+    -20.00200080871582,
+    265.1940002441406,
+    -6.59499979019165
+  ],
+  "stac_extensions": [],
+  "collection": "4402cb50-e20a-44ee-93e6-4728259250d2"
+}
