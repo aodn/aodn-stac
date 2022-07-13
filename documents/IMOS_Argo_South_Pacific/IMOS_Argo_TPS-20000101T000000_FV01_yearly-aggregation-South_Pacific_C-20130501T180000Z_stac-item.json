@@ -38,7 +38,7 @@
   "links": [
     {
       "rel": "collection",
-      "href": "/Users/alex/git/aodn/aodn-stac/4402cb50-e20a-44ee-93e6-4728259250d2_stac-collection.json",
+      "href": "/Users/alex/git/aodn/aodn-stac/documents/IMOS_Argo_South_Pacific_stac-collection.json",
       "type": "application/json"
     },
     {
@@ -63,5 +63,5 @@
     -6.59499979019165
   ],
   "stac_extensions": [],
-  "collection": "4402cb50-e20a-44ee-93e6-4728259250d2"
+  "collection": "IMOS_Argo_South_Pacific"
 }
