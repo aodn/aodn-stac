@@ -15,4 +15,9 @@ some kind of library, perhaps, or a command line tool.
 
 ## What's next?
 
-We need to work out how to load these documents into a STAC API implementation.
+There's a [Docker Compose](docker-compose.yml) file that provides a postgis and
+stac-fastapi server. And there's a [Makefile](Makefile) that demonstrates
+the commands to use to populate the DB.
+
+Once the DB has lots of collections and items in it, we can use it as a powerful
+search API for all our datasets on S3!
