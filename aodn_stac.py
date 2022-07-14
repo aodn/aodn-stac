@@ -10,6 +10,23 @@ from botocore.config import Config
 from pystac import Asset, Collection, Item
 
 import logging
+import io
+
+
+def read_dataset_inmemory(s3_path: str) -> xr.Dataset:
+    """Read a NetCDF as an XArray using in-memory data"""
+    try:
+        with io.BytesIO() as inmemoryfile:
+            # Use boto to download a file to memory
+            s3 = boto3.client("s3", config=Config(signature_version=UNSIGNED))
+            bucket, key = s3_path.replace("s3://", "").split("/", 1)
+            s3.download_fileobj(bucket, key, inmemoryfile)
+            inmemoryfile.seek(0)
+
+            return xr.open_dataset(inmemoryfile)
+    except ValueError as e:
+        print(f"Failed to open the file with error: {e}")
+        return None
 
 
 def read_dataset_download(s3_path: str) -> xr.Dataset:
@@ -75,7 +92,10 @@ def create_item_from_netcdf(s3_path: str, collection_file: str) -> Item:
     logger.setLevel(logging.INFO)
 
     logger.info("Reading dataset from S3")
-    data = read_dataset_download(s3_path)
+    data = read_dataset_inmemory(s3_path)
+    if data is None:
+        logger.error("Failed to read the dataset... skipping")
+        return None
 
     # Load the collection so we have a reference
     logger.info("Loading collection")
