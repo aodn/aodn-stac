@@ -22,13 +22,13 @@ services:
       - DB_MAX_CONN_SIZE=1
       - USE_API_HYDRATE=${USE_API_HYDRATE:-false}
     ports:
-      - "8082:8082"
+      - "80:80"
     volumes:
       - ./:/code
     depends_on:
       - database
     command:
-      bash -c "/code/wait-for-it.sh database:5432 && python -m stac_fastapi.pgstac.app"
+      uvicorn stac_fastapi.pgstac.app:app --host 0.0.0.0 --port 80
 
   database:
     container_name: stac-db
