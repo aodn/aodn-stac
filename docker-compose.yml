@@ -21,14 +21,15 @@ services:
       - DB_MIN_CONN_SIZE=1
       - DB_MAX_CONN_SIZE=1
       - USE_API_HYDRATE=${USE_API_HYDRATE:-false}
+      - VIRTUAL_HOST=stac.aodn.org.au
     ports:
-      - "80:80"
+      - "5000:5000"
     volumes:
       - ./:/code
     depends_on:
       - database
     command:
-      uvicorn stac_fastapi.pgstac.app:app --host 0.0.0.0 --port 80
+      uvicorn stac_fastapi.pgstac.app:app --host 0.0.0.0 --port 5000
 
   database:
     container_name: stac-db
@@ -43,3 +44,10 @@ services:
       - PGDATABASE=postgis
     ports:
       - "5432:5432"
+
+  proxy:
+    image: jwilder/nginx-proxy:latest
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    ports:
+      - '80:80'
