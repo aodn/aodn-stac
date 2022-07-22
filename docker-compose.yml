@@ -2,11 +2,11 @@ version: '3'
 services:
   app-pgstac:
     container_name: stac-fastapi-pgstac
-    image: stac-utils/stac-fastapi
+    image: alexgleith/stac-fastapi
     platform: linux/amd64
     environment:
       - APP_HOST=0.0.0.0
-      - APP_PORT=8082
+      - APP_PORT=5000
       - ENVIRONMENT=local
       - POSTGRES_USER=username
       - POSTGRES_PASS=password
@@ -21,7 +21,8 @@ services:
       - DB_MIN_CONN_SIZE=1
       - DB_MAX_CONN_SIZE=1
       - USE_API_HYDRATE=${USE_API_HYDRATE:-false}
-      - VIRTUAL_HOST=stac.aodn.org.au
+      - VIRTUAL_HOST=stac.dev.aodn.org.au
+      - LETSENCRYPT_HOST=stac.dev.aodn.org.au
     ports:
       - "5000:5000"
     volumes:
@@ -47,7 +48,33 @@ services:
 
   proxy:
     image: jwilder/nginx-proxy:latest
-    volumes:
-      - /var/run/docker.sock:/tmp/docker.sock:ro
     ports:
-      - '80:80'
+      - "80:80"
+      - "443:443"
+    volumes:
+      - conf:/etc/nginx/conf.d
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - certs:/etc/nginx/certs:ro
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    network_mode: bridge
+
+  acme-companion:
+    image: nginxproxy/acme-companion
+    container_name: nginx-proxy-acme
+    environment:
+      - DEFAULT_EMAIL=alex.leith@aodn.org.au
+    volumes_from:
+      - nginx-proxy
+    volumes:
+      - certs:/etc/nginx/certs:rw
+      - acme:/etc/acme.sh
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    network_mode: bridge
+
+volumes:
+  conf:
+  vhost:
+  html:
+  certs:
+  acme:
