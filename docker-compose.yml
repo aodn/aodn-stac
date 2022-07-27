@@ -5,8 +5,6 @@ services:
     image: alexgleith/stac-fastapi
     platform: linux/amd64
     environment:
-      - APP_HOST=0.0.0.0
-      - APP_PORT=5000
       - ENVIRONMENT=local
       - POSTGRES_USER=username
       - POSTGRES_PASS=password
@@ -23,14 +21,16 @@ services:
       - USE_API_HYDRATE=${USE_API_HYDRATE:-false}
       - VIRTUAL_HOST=stac.dev.aodn.org.au
       - LETSENCRYPT_HOST=stac.dev.aodn.org.au
-    ports:
-      - "5000:5000"
+      - LETSENCRYPT_EMAIL=admin@aodn.org.au
+    expose:
+      - "80"
     volumes:
       - ./:/code
     depends_on:
       - database
     command:
-      uvicorn stac_fastapi.pgstac.app:app --host 0.0.0.0 --port 5000
+      uvicorn stac_fastapi.pgstac.app:app --host 0.0.0.0 --port 80
+#        pip3 install gunicorn && gunicorn -k uvicorn.workers.UvicornWorker stac_fastapi.pgstac.app:app --port 5000
 
   database:
     container_name: stac-db
@@ -46,8 +46,9 @@ services:
     ports:
       - "5432:5432"
 
-  proxy:
-    image: jwilder/nginx-proxy:latest
+  nginx-proxy:
+    image: nginxproxy/nginx-proxy
+    container_name: nginx-proxy
     ports:
       - "80:80"
       - "443:443"
@@ -57,20 +58,18 @@ services:
       - html:/usr/share/nginx/html
       - certs:/etc/nginx/certs:ro
       - /var/run/docker.sock:/tmp/docker.sock:ro
-    network_mode: bridge
 
   acme-companion:
     image: nginxproxy/acme-companion
     container_name: nginx-proxy-acme
     environment:
-      - DEFAULT_EMAIL=alex.leith@aodn.org.au
+      - DEFAULT_EMAIL=mail@yourdomain.tld
     volumes_from:
       - nginx-proxy
     volumes:
       - certs:/etc/nginx/certs:rw
       - acme:/etc/acme.sh
       - /var/run/docker.sock:/var/run/docker.sock:ro
-    network_mode: bridge
 
 volumes:
   conf:
