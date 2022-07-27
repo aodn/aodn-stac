@@ -5,7 +5,6 @@ services:
     image: alexgleith/stac-fastapi
     platform: linux/amd64
     environment:
-      - ENVIRONMENT=local
       - POSTGRES_USER=username
       - POSTGRES_PASS=password
       - POSTGRES_DBNAME=postgis
@@ -29,7 +28,7 @@ services:
     depends_on:
       - database
     command:
-      uvicorn stac_fastapi.pgstac.app:app --host 0.0.0.0 --port 80
+      uvicorn stac_fastapi.pgstac.app:app --host 0.0.0.0 --port 80 --forwarded-allow-ips='*'
 #        pip3 install gunicorn && gunicorn -k uvicorn.workers.UvicornWorker stac_fastapi.pgstac.app:app --port 5000
 
   database:
