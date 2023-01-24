@@ -1,5 +1,12 @@
 # AODN-STAC
 
+## License
+
+All code in ths repo is covered under the [GPL](LICENSE) license unless otherwise stated.
+Code is also available under the [Apache 2.0 license](https://www.apache.org/licenses/LICENSE-2.0).
+
+## Overview
+
 A repository of STAC exploration for AODN.
 
 Currently there are two examples, both relating to Argo aggregated data.
